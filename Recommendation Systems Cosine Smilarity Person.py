@@ -10,17 +10,10 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import cx_Oracle as ora
 
-conn = ora.connect("ASAPMAZ", "ASAPMAZ123", "DWH", encoding="UTF-8")
+conn = ora.connect("username", "password", "DB", encoding="UTF-8")
 cur = conn.cursor()
 
-df = pd.read_sql_query("""
-SELECT*
-from asapmaz.inforce_ownership_table
-where se = 'S'
-AND sf = 'S'
-and region='TR'
-and RowNum<10000
-ORDER BY police
+df = pd.read_sql_query(""" SQL SCRİPT
 """, conn)
 
 # copy df------------------------------------------------------------------------------------------
